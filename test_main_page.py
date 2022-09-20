@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 import time
 from .pages.main_page import MainPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
+
 
 def test_guest_can_go_to_login_page(browser):
     link = "http://selenium1py.pythonanywhere.com/"
@@ -12,7 +14,7 @@ def test_guest_can_go_to_login_page(browser):
     # выполняем метод страницы - переходим на страницу логина (добавили return c объектом класса LoginPage и передали в переменную)
     # login_page = page.go_to_login_page()  # добавили ретурн в метод go_to_login_page который теперь возвращает объект класса LoginPage c текущим браузером и текущей url на страницу с login
     # login_page.should_be_login_page() # спользуем метод из класса LoginPage, для проверки страницы login_page
-    #page.should_be_login_link()  # проверяем есть ли кнопка на логин
+    # page.should_be_login_link()  # проверяем есть ли кнопка на логин
 
     # 2 способ перехода на страницу login_page
     # убираем return в методе go_to_login_page в классе MainPage, реализуем этот метод с объектом page
@@ -22,7 +24,15 @@ def test_guest_can_go_to_login_page(browser):
     # применяем метод из класса LoginPage для объекта LoginPage
     login_page.should_be_login_page()
 
-
+@pytest.mark.new_test
+def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
+    link = "https://selenium1py.pythonanywhere.com/"
+    page = MainPage(browser, link)
+    page.open()
+    page.go_to_basket_page()
+    basket_page = BasketPage(browser, browser.current_url)
+    basket_page.should_not_be_products_in_basket()
+    basket_page.should_be_message_basket_is_empty()
 
 # def test_guest_can_go_to_login_page(browser):
 #     link = "http://selenium1py.pythonanywhere.com/"
