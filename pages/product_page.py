@@ -9,6 +9,7 @@ class ProductPage(BasePage):
         basket_button = self.browser.find_element(*ProductPageLocators.BASKET_BUTTON)
         basket_button.click()
 
+
     def shuold_be_messege_product_has_been_added(self):
         product_name = self.browser.find_element(*ProductPageLocators.NAME_PRODUCT).text
         product_added_name = self.browser.find_element(*ProductPageLocators.NAME_ADDED_PRODUCT).text
