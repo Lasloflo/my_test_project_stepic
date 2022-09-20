@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from .locators import BasePageLocators
+from .locators import BasePageLocators, BasketPageLocators
 import math
 import time
 
@@ -25,7 +25,11 @@ class BasePage():
     def go_to_login_page(self):
         login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
-        #return LoginPage(browser=self.browser, url=self.browser.current_url)
+        # return LoginPage(browser=self.browser, url=self.browser.current_url)
+
+    def go_to_basket_page(self):
+        basket_link = self.browser.find_element(*BasePageLocators.BASKET_LINK)
+        basket_link.click()
 
     def should_be_login_link(self):
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
@@ -60,7 +64,8 @@ class BasePage():
     # будет ждать до тех пор, пока элемент не исчезнет
     def is_disappeared(self, how, what, timeout=4):
         try:
-            WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(EC.presence_of_element_located((how, what)))
+            WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(
+                EC.presence_of_element_located((how, what)))
         except TimeoutException:
             return False
 
