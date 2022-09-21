@@ -1,9 +1,8 @@
 from selenium.common.exceptions import NoSuchElementException, NoAlertPresentException, TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from .locators import BasePageLocators, BasketPageLocators
+from .locators import BasePageLocators
 import math
-import time
 
 
 class BasePage():

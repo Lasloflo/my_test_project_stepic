@@ -23,7 +23,6 @@ def browser(request):
         options = firefox_option()
         fp = webdriver.FirefoxProfile()
         fp.set_preference('intl.accept_languages', user_language)
-        # options.profile = fp
         browser = webdriver.Firefox(firefox_profile=fp)
 
     yield browser

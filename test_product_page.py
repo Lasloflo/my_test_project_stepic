@@ -1,7 +1,6 @@
 from .pages.product_page import ProductPage
 from .pages.basket_page import BasketPage
 from .pages.login_page import LoginPage
-from .pages.locators import ProductPageLocators
 import pytest
 import time
 
@@ -94,7 +93,6 @@ class TestUserAddToBasketFromProductPage():
         page.go_to_login_page()
         page.register_new_user(email, password)
         page.should_be_authorized_user()
-        time.sleep(10)
 
     def test_user_cant_see_success_message(self, browser):
         link = "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/"
@@ -111,4 +109,3 @@ class TestUserAddToBasketFromProductPage():
         product_page.solve_quiz_and_get_code()
         product_page.shuold_be_messege_product_has_been_added()
         product_page.is_basket_total()
-
